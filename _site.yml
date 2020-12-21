@@ -1,0 +1,12 @@
+name: "covid19-reports"
+output_dir: "docs"
+navbar:
+  title: "covid19-vaccines"
+  left:
+  - text: "Home"
+    href: index.html
+  - text: "12-21-2020"
+    href: index1.html
+output:
+  html_document:
+  theme: cosmo
