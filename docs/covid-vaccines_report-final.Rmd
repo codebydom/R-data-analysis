@@ -148,6 +148,7 @@ plot_usmap(data = final_df2, values = "percent_vaccinated", color = "black") +
   ) + theme(legend.position = "right")
 
 ```
+
 #### Figure 10: Density map of the Total Vaccines (Moderna) Allocated
 ```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=10,fig.height=6}
 # total vaccines distributed per state
@@ -157,7 +158,9 @@ plot_usmap(data = final_df2, values = "Doses.allocated.week.of.12.21", color = "
   ) + theme(legend.position = "right")
 
 ```
+
 ## Total Vaccine (Pfizer + Moderna Combined) Distribution Total for the United States 
+
 #### Figrue 11: Total Vaccines (pfizer + moderna) Allocated Density Map
 ```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=10,fig.height=6}
 
