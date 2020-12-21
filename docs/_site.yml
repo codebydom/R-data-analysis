@@ -1,12 +1,12 @@
 name: "covid19-reports"
 output_dir: "docs"
 navbar:
-  title: "covid19-vaccines"
+  title: "Covid19 Vaccine Tracking"
   left:
-  - text: "Home"
+  - text: "12-19-2020"
     href: index.html
   - text: "12-21-2020"
-    href: index1.html
+    href: 12-21-2020.html
 output:
   html_document:
   theme: cosmo
