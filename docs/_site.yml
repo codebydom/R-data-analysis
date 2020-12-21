@@ -3,10 +3,10 @@ output_dir: "docs"
 navbar:
   title: "Covid19 Vaccine Tracking"
   left:
-  - text: "12-19-2020"
-    href: index.html
   - text: "12-21-2020"
-    href: 12-21-2020.html
+    href: index.html
+  - text: "12-22-2020"
+    href: 12-22-2020.html
 output:
   html_document:
   theme: cosmo
