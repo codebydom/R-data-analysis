@@ -3,10 +3,38 @@ output_dir: "docs"
 navbar:
   title: "Covid19 Vaccine Tracking"
   left:
-  - text: "12-21-2020"
+  - text: "12/22"
     href: index.html
-  - text: "12-22-2020"
-    href: 12-22-2020.html
+  - text: "12/24"
+    href: 12-24-2020.html
+  - text: "12/29"
+    href: 12-29-2020.html
+  - text: "1/5"
+    href: 1-5-2021.html
+  - text: "1/12"
+    href: 1-12-2021.html
+  - text: "1/19"
+    href: 1-19-2021.html
+  - text: "1/26"
+    href: 1-26-2021.html
+  - text: "2/2"
+    href: 2-2-2021.html
+  - text: "2/9"
+    href: 2-9-2021.html
+  - text: "2/16"
+    href: 2-16-2021.html
+  - text: "2/23"
+    href: 2-23-2021.html
+  - text: "3/2"
+    href: 3-2-2021.html
+  - text: "3/9"
+    href: 3-9-2021.html
+  - text: "3/16"
+    href: 3-16-2021.html
+  - text: "3/23"
+    href: 3-23-2021.html
+  - text: "3/30"
+    href: 3-23-2021.html
 output:
   html_document:
   theme: cosmo
