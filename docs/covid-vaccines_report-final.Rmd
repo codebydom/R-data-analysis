@@ -9,7 +9,7 @@ knit: (function(input_file, encoding) {
  output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
 ---
 ## Total Vaccine Distribution Total for the World 
-To track the vaccination efforts, I scrapped vaccination data from the web using publicaly available data sources to then 
+To track the vaccination efforts, I scrapped vaccination data from the web using publicly available data sources. 
 
 Data from: Our World in Data, <https://ourworldindata.org/>.
 ```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=11,fig.height=6}
@@ -28,7 +28,7 @@ Location and Date (YYYY-MM-DD) data was last updated:
 print(df[1:2])
 ```
 
-#### Figure 1: Global Covid 19 Vaccination total by Location
+#### Figure 1: Global Covid 19 Vaccination Total by Location
 ```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=11,fig.height=6}
 
 #changing the column names in the data frame to be more easily understanable
@@ -39,7 +39,7 @@ ggplot(data=df, aes(x=Location, y=Total_Vaccines_Distributed, fill=Location)) +
   geom_bar(stat="identity") 
 ```
 
-However this Graph is slightly misleading because it does not put into account total populations of the Locations being observed, when it comes the total vaccinations per 100 people the graph looks like this.
+However, this graph is slightly misleading because it does not put into account the total populations of the Locations being observed, when it comes to the total vaccinations per 100 people the graph looks like this.
 
 #### Figure 2: Global Covid 19 Vaccination total per 100 people by Location
 ```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=11,fig.height=6}
@@ -106,7 +106,7 @@ ggplot(data=topTenStatesP, aes( x = reorder(abr, sort(Total.Pfizer.Allocation..F
 
 ## Total Vaccine (Moderna) Distribution Total for the United States 
 
-#### Figure 7: Top Ten States with Vaccine (Moderna) Distributed as percent of population (2015) across the United States
+#### Figure 7: Top Ten States with Vaccine (Moderna) Distributed as Percent of Population (2015) across the United States
 ```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=10,fig.height=6}
 modDf <- read.csv(url("https://data.cdc.gov/api/views/b7pe-5nws/rows.csv?accessType=DOWNLOAD"))
  
@@ -173,7 +173,7 @@ plot_usmap(data = finalDF3, values = "total_vaccinated", color = "black") +
 
 ```
 
-#### Firgure 12: Total Vaccines (pfizer + moderna) Allocated as percentage of the population
+#### Firgure 12: Total Vaccines (pfizer + moderna) Allocated as Percentage of the Population
 ```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=10,fig.height=6}
 plot_usmap(data = finalDF3, values = "total_per", color = "black") + 
   scale_fill_continuous(
@@ -181,5 +181,5 @@ plot_usmap(data = finalDF3, values = "total_per", color = "black") +
   ) + theme(legend.position = "right")
 ```
 
-This report is meant to give insight into what states and countries were able to vaccinate the most people during the initail days of availablity for Vaccines. Since the data comes from websites with data sources that are being updated (hopefully), next time if I re-run this R report, their should be a new figures and updated data. 
+This report is meant to give insight into which states and countries can allocate vaccines to the most people during the initial days of availability for vaccines. Since the data comes from websites with data sources that are being continously updated, next time re-running this R report, there will be new figures and updated data. 
 
