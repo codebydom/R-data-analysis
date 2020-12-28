@@ -1,12 +1,12 @@
 ---
-title: "Covid19 Vaccinations 12-24-2020"
+title: "Covid19 Vaccinations 12-29-2020"
 author: "CodeByDom"
-date: "12/24/2020"
+date: "12/29/2020"
 knit: (function(input_file, encoding) {
   out_dir <- './';
   rmarkdown::render(input_file,
  encoding=encoding,
- output_file=file.path(dirname(input_file), out_dir, '12-24-2020.html'))})
+ output_file=file.path(dirname(input_file), out_dir, '12-29-2020.html'))})
 ---
 ## Total Vaccine Distribution Total for the World 
 To track the vaccination efforts, I scrapped vaccination data from the web using publicly available data sources. 
@@ -29,7 +29,7 @@ print(df[1:2])
 ```
 
 #### Figure 1: Global Covid 19 Vaccination Total by Location
-```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=11,fig.height=6}
+```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=20,fig.height=6}
 
 #changing the column names in the data frame to be more easily understanable
 colnames(df) <- c("Location","Date","Total_Vaccines_Distributed","Total_Vaccinations_Per_Hundred")
@@ -42,7 +42,7 @@ ggplot(data=df, aes(x=reorder(Location,-Total_Vaccines_Distributed), y=Total_Vac
 However, this graph is slightly misleading because it does not put into account the total populations of the Locations being observed, when it comes to the total vaccinations per 100 people the graph looks like this.
 
 #### Figure 2: Global Covid 19 Vaccination total per 100 people by Location
-```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=11,fig.height=6}
+```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=20,fig.height=6}
 #global vaccinations by total vaccinations per hunred people in the country
 ggplot(data=df, aes(x=reorder(Location,-Total_Vaccinations_Per_Hundred), y=Total_Vaccinations_Per_Hundred, fill=Location)) + geom_bar(stat="identity") + xlab("Countres") + ylab("Number of Vaccines per Hundred People")
 ```
@@ -99,7 +99,7 @@ ggplot(data=topTenStatesP, aes( x = reorder(abr, -Total.Pfizer.Allocation..First
 # total vaccines distributed per state
  plot_usmap(data = final_df, values = "Total.Pfizer.Allocation..First.Dose..Shipments", color = "black") + 
    scale_fill_continuous(
-     low = "white", high = "blue", name = "Total Vaccinated", label = scales::comma
+     low = "white", high = "blue", name = "Total Allocated", label = scales::comma
    ) + theme(legend.position = "right")
 
 ```
@@ -108,20 +108,21 @@ ggplot(data=topTenStatesP, aes( x = reorder(abr, -Total.Pfizer.Allocation..First
 ## Total Vaccine (Moderna) Distribution Total for the United States 
 
 #### Figure 7: Top Ten States with Vaccine (Moderna) Distributed as Percent of Population (2015) across the United States
-```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=10,fig.height=6}
+```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=14,fig.height=6}
 modDf <- read.csv(url("https://data.cdc.gov/api/views/b7pe-5nws/rows.csv?accessType=DOWNLOAD"))
  
  
 #must scarp out the special character *** in data
 modDf$Jurisdiction <- str_replace_all(statesDf$Jurisdiction, "[[:punct:]]", "")
-#get rid of comma in doses column
-modDf$Doses.allocated.week.of.12.21 <- str_replace_all(modDf$Doses.allocated.week.of.12.21, "[[:punct:]]", "") %>% strtoi()
 
-final_df2 <- inner_join(modDf,statepop,by="Jurisdiction")  %>% mutate(percent_vaccinated = (Doses.allocated.week.of.12.21/pop_2015)*100)
+#get rid of comma in doses column
+modDf$Total.Moderna.Allocation..First.Dose..Shipments <- str_replace_all(modDf$Total.Moderna.Allocation..First.Dose..Shipments, "[[:punct:]]", "") %>% strtoi()
+
+final_df2 <- inner_join(modDf,statepop,by="Jurisdiction")  %>% mutate(percent_vaccinated = (Total.Moderna.Allocation..First.Dose..Shipments/pop_2015)*100)
 topTenStatesmVP <- head(arrange(final_df2,desc(percent_vaccinated)), n = 10)
 
 #getting top ten most vaccinated states by total number of vaccinations
-topTenStatesmP <- head(arrange(final_df2,desc(Doses.allocated.week.of.12.21)), n = 10)
+topTenStatesmP <- head(arrange(final_df2,desc(Total.Moderna.Allocation..First.Dose..Shipments)), n = 10)
 
 #top ten vaccinated states by percentage of population
 
@@ -132,9 +133,9 @@ ggplot(data=topTenStatesVP, aes(x = reorder(Jurisdiction,-percent_vaccinated), y
 
 #### Figure 8: Top Ten States with Allocated Vaccines (Moderna)
 
-```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=10,fig.height=6}
+```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=14,fig.height=6}
 #top ten vaccinated states by total
-ggplot(data=topTenStatesmP, aes( x = reorder(Jurisdiction,-Doses.allocated.week.of.12.21), y = Doses.allocated.week.of.12.21, fill=Jurisdiction)) +
+ggplot(data=topTenStatesmP, aes( x = reorder(Jurisdiction,-Total.Moderna.Allocation..First.Dose..Shipments), y = Total.Moderna.Allocation..First.Dose..Shipments, fill=Jurisdiction)) +
   geom_bar(stat="identity") + xlab("States") + ylab("Total Number of Vaccines")
 
 ```
@@ -152,9 +153,9 @@ plot_usmap(data = final_df2, values = "percent_vaccinated", color = "black") +
 #### Figure 10: Density map of the Total Vaccines (Moderna) Allocated
 ```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=10,fig.height=6}
 # total vaccines distributed per state
-plot_usmap(data = final_df2, values = "Doses.allocated.week.of.12.21", color = "black") + 
+plot_usmap(data = final_df2, values = "Total.Moderna.Allocation..First.Dose..Shipments", color = "black") + 
   scale_fill_continuous(
-    low = "white", high = "blue", name = "Total Vaccinated", label = scales::comma
+    low = "white", high = "blue", name = "Total Allocated", label = scales::comma
   ) + theme(legend.position = "right")
 
 ```
@@ -166,7 +167,7 @@ plot_usmap(data = final_df2, values = "Doses.allocated.week.of.12.21", color = "
 ```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=10,fig.height=6}
 
 
-finalDF3 <- inner_join(final_df,final_df2[1:3],by="Jurisdiction")  %>% mutate(total_vaccinated = Doses.allocated.week.of.12.21.y+Total.Pfizer.Allocation..First.Dose..Shipments,total_per = total_vaccinated/pop_2015*100)
+finalDF3 <- inner_join(final_df,final_df2[1:7],by="Jurisdiction")  %>% mutate(total_vaccinated = Total.Moderna.Allocation..First.Dose..Shipments+Total.Pfizer.Allocation..First.Dose..Shipments,total_per = total_vaccinated/pop_2015*100)
 topTenStatesTotP <- head(arrange(finalDF3,desc(total_per)), n = 10)
 topTenStatesTot <- head(arrange(finalDF3,desc(total_vaccinated)), n = 10)
 ggplot(data=topTenStatesTotP, aes( x = reorder(Jurisdiction,-total_per), y = total_per, fill=Jurisdiction)) +
