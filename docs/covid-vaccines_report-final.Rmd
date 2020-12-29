@@ -167,7 +167,7 @@ plot_usmap(data = final_df2, values = "Total.Moderna.Allocation..First.Dose..Shi
 ```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=10,fig.height=6}
 
 
-finalDF3 <- inner_join(final_df,final_df2[1:7],by="Jurisdiction")  %>% mutate(total_vaccinated = Total.Moderna.Allocation..First.Dose..Shipments+Total.Pfizer.Allocation..First.Dose..Shipments,total_per = total_vaccinated/pop_2015*100)
+finalDF3 <- inner_join(final_df,final_df2[1:10],by="Jurisdiction")  %>% mutate(total_vaccinated = Total.Moderna.Allocation..First.Dose..Shipments+Total.Pfizer.Allocation..First.Dose..Shipments,total_per = total_vaccinated/pop_2015*100)
 topTenStatesTotP <- head(arrange(finalDF3,desc(total_per)), n = 10)
 topTenStatesTot <- head(arrange(finalDF3,desc(total_vaccinated)), n = 10)
 ggplot(data=topTenStatesTotP, aes( x = reorder(Jurisdiction,-total_per), y = total_per, fill=Jurisdiction)) +
