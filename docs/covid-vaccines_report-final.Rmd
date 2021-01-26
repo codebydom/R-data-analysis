@@ -1,12 +1,12 @@
 ---
-title: "Covid19 Vaccinations 1-19-2021"
+title: "Covid19 Vaccinations 1-26-2021"
 author: "CodeByDom"
-date: "1/19/2021"
+date: "1/26/2021"
 knit: (function(input_file, encoding) {
   out_dir <- './';
   rmarkdown::render(input_file,
  encoding=encoding,
- output_file=file.path(dirname(input_file), out_dir, '1-19-2020.html'))})
+ output_file=file.path(dirname(input_file), out_dir, '1-26-2020.html'))})
 ---
 ## Total Vaccine Distribution Total for the World 
 To track the vaccination efforts, I scrapped vaccination data from the web using publicly available data sources. 
