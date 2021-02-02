@@ -1,12 +1,12 @@
 ---
-title: "Covid19 Vaccinations 1-26-2021"
+title: "Covid19 Vaccinations 2-2-2021"
 author: "CodeByDom"
-date: "1/26/2021"
+date: "2/2/2021"
 knit: (function(input_file, encoding) {
   out_dir <- './';
   rmarkdown::render(input_file,
  encoding=encoding,
- output_file=file.path(dirname(input_file), out_dir, '1-26-2020.html'))})
+ output_file=file.path(dirname(input_file), out_dir, '2-2-2021.html'))})
 ---
 ## Total Vaccine Distribution Total for the World 
 To track the vaccination efforts, I scrapped vaccination data from the web using publicly available data sources. 
@@ -32,7 +32,8 @@ print(df[1:3])
 ```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=20,fig.height=14}
 df15 <- head(arrange(df,desc(total_vaccinations)), n = 15)
 ggplot(data=df15, aes(x=reorder(location, sort(total_vaccinations,FALSE)), y=total_vaccinations, fill=location)) +
-  geom_bar(stat="identity") + xlab("Countries") + ylab("Total Vaccinations Given")
+  geom_bar(stat="identity") + xlab("Countries") + ylab("Total Vaccinations Given")+theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=18,face="bold"))
 ```
 
 However, this graph is slightly misleading because it does not put into account the total populations of the Locations being observed, when it comes to the total vaccinations per 100 people the graph looks like this.
@@ -41,21 +42,24 @@ However, this graph is slightly misleading because it does not put into account 
 ```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=20,fig.height=14}
 df152 <- head(arrange(df,desc(total_vaccinations_per_hundred)), n = 15)
 ggplot(data=df152, aes(x=reorder(location, sort(total_vaccinations_per_hundred,TRUE)), y=total_vaccinations_per_hundred, fill=location)) +
-  geom_bar(stat="identity") + xlab("Countries") + ylab("Total Vaccinations Given per 100 People")
+  geom_bar(stat="identity") + xlab("Countries") + ylab("Total Vaccinations Given per 100 People")+theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=18,face="bold"))
 ```
 
 #### Figure 1.2: Total Daily Vaccinations by Location (Top 15) 
 ```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=20,fig.height=14}
 df153 <- head(arrange(df,desc(daily_vaccinations)), n = 15)
 ggplot(data=df153, aes(x=reorder(location, sort(daily_vaccinations,FALSE)), y=daily_vaccinations, fill=location)) +
-  geom_bar(stat="identity") + xlab("Countries") + ylab("Total Vaccinations Given Daily")
+  geom_bar(stat="identity") + xlab("Countries") + ylab("Total Vaccinations Given Daily")+theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=18,face="bold"))
 ```
 
 #### Figure 2.2: Total Daily Vaccinations per Million by Location (Top 15) 
 ```{r echo=FALSE,comment = "", prompt=FALSE,message=FALSE,warning=FALSE,fig.width=20,fig.height=14}
 df154 <- head(arrange(df,desc(daily_vaccinations_per_million)), n = 15)
 ggplot(data=df154, aes(x=reorder(location, sort(daily_vaccinations_per_million,FALSE)), y=daily_vaccinations_per_million, fill=location)) +
-  geom_bar(stat="identity") + xlab("Countries") + ylab("Total Vaccinations Given Daily per Million")
+  geom_bar(stat="identity") + xlab("Countries") + ylab("Total Vaccinations Given Daily per Million")+theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=18,face="bold"))
 ```
 
 ## Total Vaccine (Pfizer) Distribution Total for the United States 
